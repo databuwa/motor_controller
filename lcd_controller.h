@@ -14,9 +14,13 @@ char s[16];
 void SetupLCD()
 {
     lcd.begin(16,2);
+    lcd.setCursor(0,0);
+    lcd.print(F("Motor controller"));
+    delay(500);
+    lcd.setCursor(0,0);
+    lcd.print(F("                "));
 }
 
-int i=0;
 void DisplayTime()
 {
     lcd.setCursor(0,0);
@@ -31,6 +35,7 @@ void DisplayMotorStatus()
 {
     lcd.setCursor(0,1);
     memset(s,0,sizeof(s));
+    
     switch (current_motor_state)
     {
     case MotorState::RUNNING:
@@ -41,7 +46,7 @@ void DisplayMotorStatus()
         PRINTLN("S");
         break;
     case MotorState::IDLE:
-        snprintf(s,sizeof(s), "On in %02d:%02d",(int)(GetTimeToNextEvent()/60), (int)(GetTimeToNextEvent()%60) );
+        snprintf(s,sizeof(s), "On in  %02d:%02d",(int)(GetTimeToNextEvent()/60), (int)(GetTimeToNextEvent()%60) );
         lcd.print(s);
         PRINT("On in ");
         PRINT(GetTimeToNextEvent());

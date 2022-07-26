@@ -12,12 +12,9 @@
 #define _1S 1000
 #define _10S 10000
 #define _1H 3600
-#define _5M 600
+#define _5M 300
 #define OFF_DURATION _1H    // 3600
-#define ON_DURATION _5M     // 600
-
-
-
+#define ON_DURATION _5M     // 300
 
 struct Time
 {

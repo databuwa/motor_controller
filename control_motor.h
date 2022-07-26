@@ -14,8 +14,8 @@ void ControlMotor_(bool on)
 /**
  * @brief Test whether enough time is elapsed from the last motor start.
  * 
- * @param now The current time.
- * @param interval Interval to wait in minutes.
+ * @param now The current time seconds.
+ * @param interval Interval to wait in seconds.
  * @return true Return true is the timeout elapsed.
  */
 bool EnoughTimeElapsed(const uint32_t &now, const uint32_t &interval)

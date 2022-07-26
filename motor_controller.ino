@@ -29,10 +29,10 @@ uint32_t GetTimeToNextEvent()
     switch (current_motor_state)
     {
     case MotorState::IDLE:
-        next_event_in = OFF_DURATION - time_elapsed;
+        next_event_in = time_elapsed>OFF_DURATION? 0 : OFF_DURATION - time_elapsed;
         break;
     case MotorState::RUNNING:
-        next_event_in = ON_DURATION - time_elapsed;
+        next_event_in =time_elapsed>ON_DURATION? 0 : ON_DURATION - time_elapsed;
         break;
     default:
         break;
@@ -48,15 +48,14 @@ void setup()
     pinMode(MOTOR_STATE_INDICATOR_PIN,OUTPUT);
     SetupLCD();
     last_event_time = GetLastTime();
-    PRINTLN("Setup complete..");
-    PRINTLN(real_time_update_scheduler.GetDelay());
+    
 }
 
 void loop()
 {
     real_time_update_scheduler.TimeDelay(UpdateRealTime);
-    motor_control_scheduler.TimeDelay(ControlMotor);
     display_time_scheduler.TimeDelay(DisplayTime);
+    motor_control_scheduler.TimeDelay(ControlMotor);
     display_motor_status_scheduler.TimeDelay(DisplayMotorStatus);
 
 }
