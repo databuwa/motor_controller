@@ -30,28 +30,19 @@ void DisplayTime()
 void DisplayMotorStatus()
 {
     lcd.setCursor(0,1);
+    memset(s,0,sizeof(s));
     switch (current_motor_state)
     {
     case MotorState::RUNNING:
-    #ifndef MOTOR_DEBUG_
         snprintf(s,sizeof(s), "Off in %02d:%02d",(int)(GetTimeToNextEvent()/60), (int)(GetTimeToNextEvent()%60) );
         lcd.print(s);
-        /*lcd.print("Off in ");
-        lcd.print(GetTimeToNextEvent() );
-        lcd.print("S");*/
-        #endif
         PRINT("Off in ");
         PRINT(GetTimeToNextEvent());
         PRINTLN("S");
         break;
     case MotorState::IDLE:
-    #ifndef MOTOR_DEBUG_
         snprintf(s,sizeof(s), "On in %02d:%02d",(int)(GetTimeToNextEvent()/60), (int)(GetTimeToNextEvent()%60) );
         lcd.print(s);
-        // lcd.print("On in ");
-        // lcd.print(GetTimeToNextEvent());
-        // lcd.print("S");
-        #endif
         PRINT("On in ");
         PRINT(GetTimeToNextEvent());
         PRINTLN("S");

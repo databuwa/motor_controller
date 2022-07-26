@@ -5,7 +5,6 @@
 #include "eeprom_helper.h"
 #include <DS3231.h>
 
-DS3231 ds3231;
 RTClib clock_lib;
 
 CTimeDelay motor_control_scheduler(_10S);
@@ -21,7 +20,6 @@ void UpdateRealTime()
     real_time.minutes = now.minute();
     real_time.unixtime = now.unixtime();
     real_time.temperature = now.temperature();
-    PRINTLN(real_time.temperature);
 }
 
 uint32_t GetTimeToNextEvent()
