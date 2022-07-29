@@ -1,5 +1,5 @@
 {
     "sketch": "motor_controller.ino",
     "board": "arduino:avr:uno",
-    "port": "COM9"
+    "port": "COM4"
 }

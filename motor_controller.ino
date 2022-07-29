@@ -45,6 +45,7 @@ void setup()
     SERIAL_BEGIN(115200);
     Wire.begin();
     pinMode(MOTOR_PIN, OUTPUT);
+    ControlMotor_(false);
     pinMode(MOTOR_STATE_INDICATOR_PIN,OUTPUT);
     SetupLCD();
     last_event_time = GetLastTime();
@@ -57,5 +58,4 @@ void loop()
     display_time_scheduler.TimeDelay(DisplayTime);
     motor_control_scheduler.TimeDelay(ControlMotor);
     display_motor_status_scheduler.TimeDelay(DisplayMotorStatus);
-
 }
