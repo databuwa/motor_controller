@@ -22,6 +22,14 @@ void UpdateRealTime()
     real_time.temperature = now.temperature();
 }
 
+void UpdateRealTime_()
+{
+    auto ms = millis();
+    real_time.seconds = ms%1000;
+    real_time.minutes = ms/60000
+    //real_time.hours = 
+}
+
 uint32_t GetTimeToNextEvent()
 {
     auto time_elapsed = real_time.unixtime - last_event_time;

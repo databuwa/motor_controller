@@ -27,17 +27,16 @@ void ControlMotor(void)
 {
     PRINTLN("Controlling motor");
     static boolean turned_on = false;
-    const auto &now = rtc.now();
 
     if (!turned_on)
     {
-        if (EnoughTimeElapsed(now.unixtime(), OFF_DURATION))
+        if (EnoughTimeElapsed(real_time.unixtime, OFF_DURATION))
         {
             ControlMotor_(true);
             turned_on = true;
-            SetLastTime(now.unixtime());
+            SetLastTime(real_time.unixtime);
             current_motor_state = MotorState::RUNNING;
-            last_event_time = now.unixtime();
+            last_event_time = real_time.unixtime;
             PRINTLN("Motor turned ON");
         }
         else
@@ -47,12 +46,12 @@ void ControlMotor(void)
     }
     else
     {
-        if (EnoughTimeElapsed(now.unixtime(), ON_DURATION))
+        if (EnoughTimeElapsed(real_time.unixtime, ON_DURATION))
         {
             ControlMotor_(false);
             turned_on = false;
             current_motor_state = MotorState::IDLE;
-            last_event_time = now.unixtime();
+            last_event_time = real_time.unixtime;
             PRINTLN("Motor turned off");
         }
         else
